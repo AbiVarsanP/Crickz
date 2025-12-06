@@ -1,0 +1,19 @@
+{
+  "name": "cricket-game-backend",
+  "version": "1.0.0",
+  "description": "Backend server for Cricket Hand-Game Arena",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["cricket", "game", "socket.io", "multiplayer"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.6.1",
+    "cors": "^2.8.5"
+  }
+}

@@ -1,4 +1,5 @@
-import SamplePage from './pages/SamplePage';
+import HomePage from './pages/HomePage';
+import GamePage from './pages/GamePage';
 import type { ReactNode } from 'react';
 
 interface RouteConfig {
@@ -10,9 +11,14 @@ interface RouteConfig {
 
 const routes: RouteConfig[] = [
   {
-    name: 'Sample Page',
+    name: 'Home',
     path: '/',
-    element: <SamplePage />
+    element: <HomePage />
+  },
+  {
+    name: 'Game',
+    path: '/game/:roomId',
+    element: <GamePage />
   }
 ];
 
