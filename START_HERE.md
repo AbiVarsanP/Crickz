@@ -106,10 +106,12 @@ cricket-hand-game-arena/
 
 ## 📞 Need Help?
 
-1. **Setup Issues** → Check [QUICKSTART.md](./QUICKSTART.md)
-2. **Deployment** → Check [DEPLOYMENT.md](./DEPLOYMENT.md)
-3. **Game Rules** → Check [USER_GUIDE.md](./USER_GUIDE.md)
-4. **Technical Details** → Check [PROJECT_README.md](./PROJECT_README.md)
+1. **Room Not Creating** → Check [TROUBLESHOOTING.md](./TROUBLESHOOTING.md) ⚠️ **START HERE**
+2. **Backend Setup** → Check [BACKEND_SETUP.md](./BACKEND_SETUP.md)
+3. **Setup Issues** → Check [QUICKSTART.md](./QUICKSTART.md)
+4. **Deployment** → Check [DEPLOYMENT.md](./DEPLOYMENT.md)
+5. **Game Rules** → Check [USER_GUIDE.md](./USER_GUIDE.md)
+6. **Technical Details** → Check [PROJECT_README.md](./PROJECT_README.md)
 
 ## ✅ Verification
 
