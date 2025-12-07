@@ -27,9 +27,12 @@ export default function GamePage() {
   const navigate = useNavigate();
   const location = useLocation();
   const { toast } = useToast();
-  const [room, setRoom] = useState<Room | null>(location.state?.room || null);
-  const [playerNumber, setPlayerNumber] = useState<number>(location.state?.playerNumber || 0);
-  const incomingUserName = location.state?.userName as string | undefined;
+  // try navigation state first, then fall back to a persisted last-room (helps mobile/reload cases)
+  const persisted = typeof window !== 'undefined' ? localStorage.getItem('hc_last_room') : null;
+  const parsed = persisted ? JSON.parse(persisted) : null;
+  const [room, setRoom] = useState<Room | null>(location.state?.room || parsed?.room || null);
+  const [playerNumber, setPlayerNumber] = useState<number>(location.state?.playerNumber || parsed?.playerNumber || 0);
+  const incomingUserName = (location.state?.userName as string | undefined) || parsed?.userName;
   const [matchResult, setMatchResult] = useState<MatchResult | null>(null);
   const [lastBallResult, setLastBallResult] = useState<BallResult | null>(null);
   const [inningsPopup, setInningsPopup] = useState<{ open: boolean; innings?: number; score?: number; wickets?: number; overs?: string }>(() => ({ open: false }));
@@ -217,6 +220,12 @@ export default function GamePage() {
         console.log('[GamePage] emitting setName to server with', localName);
         socketService.emit('setName', { roomId, name: localName });
       }
+    }
+
+    // If we recovered room from localStorage (persisted by join), also request a fresh room update
+    if (!location.state?.room && parsed?.room && parsed?.room.roomId === roomId) {
+      console.log('[GamePage] recovered room from localStorage, emitting joinRoom to refresh state');
+      socketService.emit('joinRoom', { roomId, name: incomingUserName || undefined });
     }
 
     return () => {

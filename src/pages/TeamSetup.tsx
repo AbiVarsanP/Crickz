@@ -105,6 +105,12 @@ export default function TeamSetup() {
     socket.once('playerJoined', (payload: any) => {
       clearTimeout(timeout);
       setIsJoining(false);
+      // persist last room so navigation or reload on mobile can recover state
+      try {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('hc_last_room', JSON.stringify({ room: payload.room, playerNumber: payload.playerNumber, userName }));
+        }
+      } catch (e) { console.warn('Failed to persist room to localStorage', e); }
       navigate(`/game/${roomCode.toUpperCase()}`, { state: { room: payload.room, playerNumber: payload.playerNumber, userName } });
     });
 
