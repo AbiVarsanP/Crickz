@@ -140,22 +140,22 @@ export default function TeamSetup() {
                 <Input placeholder="Your name (optional)" value={userName} onChange={(e) => setUserName(e.target.value)} />
                 <div className="flex items-center gap-2">
                   <label className="text-sm">Overs:</label>
-                  <input
+                  <Input
                     type="number"
                     min={1}
                     max={20}
                     value={totalOvers}
-                    onChange={(e) => setTotalOvers(Number(e.target.value) || 1)}
-                    className="w-16 sm:w-20 p-1 sm:p-2 border rounded text-sm"
+                    onChange={(e: any) => setTotalOvers(Number(e.target.value) || 1)}
+                    className="w-16 sm:w-20 p-1 sm:p-2 text-sm"
                   />
                   <label className="text-sm">Wickets:</label>
-                  <input
+                  <Input
                     type="number"
                     min={1}
                     max={10}
                     value={maxWickets}
-                    onChange={(e) => setMaxWickets(Number(e.target.value) || 1)}
-                    className="w-16 sm:w-20 p-1 sm:p-2 border rounded text-sm"
+                    onChange={(e: any) => setMaxWickets(Number(e.target.value) || 1)}
+                    className="w-16 sm:w-20 p-1 sm:p-2 text-sm"
                   />
                 </div>
                 <div>
