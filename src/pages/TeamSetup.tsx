@@ -138,25 +138,54 @@ export default function TeamSetup() {
             <CardContent>
               <div className="space-y-3">
                 <Input placeholder="Your name (optional)" value={userName} onChange={(e) => setUserName(e.target.value)} />
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3 flex-wrap sm:flex-nowrap">
                   <label className="text-sm">Overs:</label>
-                  <Input
-                    type="number"
-                    min={1}
-                    max={20}
-                    value={totalOvers}
-                    onChange={(e: any) => setTotalOvers(Number(e.target.value) || 1)}
-                    className="w-16 sm:w-20 p-1 sm:p-2 text-sm"
-                  />
+                  <div className="flex items-center space-x-1">
+                    <button
+                      aria-label="Decrease overs"
+                      onClick={() => setTotalOvers((v) => Math.max(1, Number(v) - 1))}
+                      className="h-7 w-7 rounded-md bg-white text-black flex items-center justify-center text-sm"
+                    >
+                      -
+                    </button>
+                    <Input
+                      type="text"
+                      value={String(totalOvers)}
+                      onChange={(e: any) => setTotalOvers(Number(e.target.value) || 1)}
+                      className="w-12 sm:w-16 p-1 text-sm text-center"
+                    />
+                    <button
+                      aria-label="Increase overs"
+                      onClick={() => setTotalOvers((v) => Math.min(20, Number(v) + 1))}
+                      className="h-7 w-7 rounded-md bg-white text-black flex items-center justify-center text-sm"
+                    >
+                      +
+                    </button>
+                  </div>
+
                   <label className="text-sm">Wickets:</label>
-                  <Input
-                    type="number"
-                    min={1}
-                    max={10}
-                    value={maxWickets}
-                    onChange={(e: any) => setMaxWickets(Number(e.target.value) || 1)}
-                    className="w-16 sm:w-20 p-1 sm:p-2 text-sm"
-                  />
+                  <div className="flex items-center space-x-1">
+                    <button
+                      aria-label="Decrease wickets"
+                      onClick={() => setMaxWickets((v) => Math.max(1, Number(v) - 1))}
+                      className="h-7 w-7 rounded-md bg-white text-black flex items-center justify-center text-sm"
+                    >
+                      -
+                    </button>
+                    <Input
+                      type="text"
+                      value={String(maxWickets)}
+                      onChange={(e: any) => setMaxWickets(Number(e.target.value) || 1)}
+                      className="w-12 sm:w-16 p-1 text-sm text-center"
+                    />
+                    <button
+                      aria-label="Increase wickets"
+                      onClick={() => setMaxWickets((v) => Math.min(10, Number(v) + 1))}
+                      className="h-7 w-7 rounded-md bg-white text-black flex items-center justify-center text-sm"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
                 <div>
                   <label className="block text-sm font-medium">Team A players (comma separated)</label>

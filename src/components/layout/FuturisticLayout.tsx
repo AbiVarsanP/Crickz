@@ -28,7 +28,7 @@ export default function FuturisticLayout({ children, connected }: Props) {
                 <span className="font-bold text-white text-xs sm:text-sm">CZ</span>
               </div>
               <div className="min-w-0">
-                <h1 className="text-base sm:text-lg font-extrabold tracking-tight truncate">Crickz</h1>
+                <h1 className="text-base sm:text-lg font-extrabold tracking-tight truncate">Cricktz</h1>
                 <p className="text-xs text-slate-300 hidden md:block">Multiplayer · Real-time · Neon</p>
               </div>
             </div>
@@ -42,7 +42,7 @@ export default function FuturisticLayout({ children, connected }: Props) {
                 <DialogContent className="max-w-lg">
                   <DialogHeader>
                     <DialogTitle>How to Play</DialogTitle>
-                    <DialogDescription className="mt-2">Quick guide to play Crickz</DialogDescription>
+                    <DialogDescription className="mt-2">Quick guide to play Cricktz</DialogDescription>
                   </DialogHeader>
                   <div className="mt-4 text-slate-300 space-y-2">
                     <ol className="list-decimal list-inside">

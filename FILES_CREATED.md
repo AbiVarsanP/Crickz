@@ -1,4 +1,4 @@
-# 📁 Files Created - Crickz
+# 📁 Files Created - Cricktz
 
 ## Frontend Files (src/)
 

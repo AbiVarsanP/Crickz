@@ -4,6 +4,15 @@ import { Server } from 'socket.io';
 import cors from 'cors';
 import { setupSocketHandlers } from './socketHandlers.js';
 
+// Global error handlers to surface uncaught errors during development
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err && err.stack ? err.stack : err);
+});
+
+process.on('unhandledRejection', (reason) => {
+  console.error('Unhandled Rejection:', reason);
+});
+
 const app = express();
 const httpServer = createServer(app);
 
@@ -40,7 +49,7 @@ const io = new Server(httpServer, {
 });
 
 app.get('/', (req, res) => {
-  res.json({ message: 'Crickz Server' });
+  res.json({ message: 'Cricktz Server' });
 });
 
 app.get('/health', (req, res) => {

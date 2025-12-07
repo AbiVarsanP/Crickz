@@ -4,6 +4,7 @@ import {
   joinRoom,
   updateRoomState,
   removePlayerFromRoom,
+  getAllRooms,
   setupGameSettings
 } from './roomManager.js';
 import {

@@ -1,4 +1,4 @@
-# 🚀 Quick Start Guide - Crickz
+# 🚀 Quick Start Guide - Cricktz
 
 Get up and running in 5 minutes!
 
@@ -116,4 +116,4 @@ See [DEPLOYMENT.md](./DEPLOYMENT.md) for complete deployment guide.
 
 ## 🎉 You're Ready!
 
-Start playing Crickz and challenge your friends! 🏏
+Start playing Cricktz and challenge your friends! 🏏

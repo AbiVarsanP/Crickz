@@ -1,10 +1,10 @@
-# 🏏 Crickz - User Guide
+# 🏏 Cricktz - User Guide
 
-Welcome to Crickz! This guide will help you understand and enjoy the game.
+Welcome to Cricktz! This guide will help you understand and enjoy the game.
 
-## 🎮 What is Crickz?
+## 🎮 What is Cricktz?
 
-Crickz is a digital version of the classic hand cricket game. Two players compete by selecting numbers (1-6) simultaneously:
+Cricktz is a digital version of the classic hand cricket game. Two players compete by selecting numbers (1-6) simultaneously:
 - **If numbers match** → Batsman is OUT! 🔴
 - **If numbers differ** → Batsman scores runs equal to their number ✅
 
@@ -203,7 +203,7 @@ Result: You score 1 run
 
 ## 🎊 Enjoy the Game!
 
-Crickz brings the classic hand cricket experience to the digital world. Challenge your friends, develop strategies, and most importantly - have fun! 🏏
+Cricktz brings the classic hand cricket experience to the digital world. Challenge your friends, develop strategies, and most importantly - have fun! 🏏
 
 **Good luck and may the best player win!** 🏆
 

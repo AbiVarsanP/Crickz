@@ -124,14 +124,46 @@ export default function HomePage() {
             </CardHeader>
             <CardContent className="space-y-3 mt-2 flex-1">
               <Input placeholder="Your name (optional)" value={userName} onChange={(e) => setUserName(e.target.value)} className="h-12 w-full" />
-              <div className="flex flex-wrap gap-4 items-center">
-                <div className="flex items-center gap-3">
+              <div className="flex items-center gap-4 flex-wrap sm:flex-nowrap">
+                <div className="flex items-center gap-2">
                   <label className="text-sm text-slate-300">Overs</label>
-                  <Input aria-label="Overs" type="number" min={1} max={20} value={String(totalOvers)} onChange={(e) => setTotalOvers(Number(e.target.value) || 1)} className="w-28 text-center py-2" />
+                  <div className="flex items-center space-x-1">
+                    <button
+                      aria-label="Decrease overs"
+                      onClick={() => setTotalOvers((v) => Math.max(1, Number(v) - 1))}
+                      className="h-7 w-7 rounded-md bg-white text-black flex items-center justify-center text-sm"
+                    >
+                      -
+                    </button>
+                    <Input aria-label="Overs" type="text" value={String(totalOvers)} onChange={(e) => setTotalOvers(Number(e.target.value) || 1)} className="w-16 sm:w-20 text-center py-1 text-sm" />
+                    <button
+                      aria-label="Increase overs"
+                      onClick={() => setTotalOvers((v) => Math.min(20, Number(v) + 1))}
+                      className="h-7 w-7 rounded-md bg-white text-black flex items-center justify-center text-sm"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   <label className="text-sm text-slate-300">Wickets</label>
-                  <Input aria-label="Wickets" type="number" min={1} max={10} value={String(maxWickets)} onChange={(e) => setMaxWickets(Number(e.target.value) || 1)} className="w-28 text-center py-2" />
+                  <div className="flex items-center space-x-1">
+                    <button
+                      aria-label="Decrease wickets"
+                      onClick={() => setMaxWickets((v) => Math.max(1, Number(v) - 1))}
+                      className="h-7 w-7 rounded-md bg-white text-black flex items-center justify-center text-sm"
+                    >
+                      -
+                    </button>
+                    <Input aria-label="Wickets" type="text" value={String(maxWickets)} onChange={(e) => setMaxWickets(Number(e.target.value) || 1)} className="w-16 sm:w-20 text-center py-1 text-sm" />
+                    <button
+                      aria-label="Increase wickets"
+                      onClick={() => setMaxWickets((v) => Math.min(10, Number(v) + 1))}
+                      className="h-7 w-7 rounded-md bg-white text-black flex items-center justify-center text-sm"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className="pt-4">

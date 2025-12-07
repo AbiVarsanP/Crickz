@@ -2,7 +2,7 @@
 
 ## ⚠️ IMPORTANT: Backend Must Be Running
 
-Crickz requires a backend server to handle real-time multiplayer functionality. **You must start the backend server before using the application.**
+Cricktz requires a backend server to handle real-time multiplayer functionality. **You must start the backend server before using the application.**
 
 ## Quick Start
 
@@ -45,7 +45,7 @@ http://localhost:3001
 
 You should see:
 ```json
-{"status":"ok","message":"Crickz Server"}
+{"status":"ok","message":"Cricktz Server"}
 ```
 
 ### Check Health Endpoint

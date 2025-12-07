@@ -153,7 +153,7 @@ npm run dev
 
 **Before**:
 ```
-🏏 Crickz
+🏏 Cricktz
 Challenge your friends...
 
 [Create New Room] [Join Room]
@@ -161,7 +161,7 @@ Challenge your friends...
 
 **After**:
 ```
-🏏 Crickz
+🏏 Cricktz
 🟢 Connected  (or 🔴 Disconnected)
 
 ⚠️ Backend server is not running... (if disconnected)

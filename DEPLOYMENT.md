@@ -1,6 +1,6 @@
-# Deployment Guide - Crickz
+# Deployment Guide - Cricktz
 
-This guide will help you deploy Crickz to production.
+This guide will help you deploy Cricktz to production.
 
 ## Architecture
 

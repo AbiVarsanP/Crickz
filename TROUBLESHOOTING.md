@@ -1,4 +1,4 @@
-# 🔧 Troubleshooting Guide - Crickz
+# 🔧 Troubleshooting Guide - Cricktz
 
 ## Common Issues and Solutions
 
@@ -30,7 +30,7 @@ http://localhost:3001
 
 You should see:
 ```json
-{"status":"ok","message":"Crickz Server"}
+{"status":"ok","message":"Cricktz Server"}
 ```
 
 **Step 3: Check Connection Status**

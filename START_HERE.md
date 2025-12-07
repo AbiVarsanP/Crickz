@@ -1,6 +1,6 @@
-# 🏏 Crickz - START HERE
+# 🏏 Cricktz - START HERE
 
-Welcome to Crickz! This is your starting point.
+Welcome to Cricktz! This is your starting point.
 
 ## 🎯 What is This?
 
