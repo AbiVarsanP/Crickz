@@ -138,11 +138,25 @@ export default function TeamSetup() {
             <CardContent>
               <div className="space-y-3">
                 <Input placeholder="Your name (optional)" value={userName} onChange={(e) => setUserName(e.target.value)} />
-                <div className="flex flex-wrap gap-2 items-center">
+                <div className="flex items-center gap-2">
                   <label className="text-sm">Overs:</label>
-                  <input type="number" min={1} max={20} value={totalOvers} onChange={(e) => setTotalOvers(Number(e.target.value) || 1)} className="w-20 p-2 border rounded" />
+                  <input
+                    type="number"
+                    min={1}
+                    max={20}
+                    value={totalOvers}
+                    onChange={(e) => setTotalOvers(Number(e.target.value) || 1)}
+                    className="w-16 sm:w-20 p-1 sm:p-2 border rounded text-sm"
+                  />
                   <label className="text-sm">Wickets:</label>
-                  <input type="number" min={1} max={10} value={maxWickets} onChange={(e) => setMaxWickets(Number(e.target.value) || 1)} className="w-20 p-2 border rounded" />
+                  <input
+                    type="number"
+                    min={1}
+                    max={10}
+                    value={maxWickets}
+                    onChange={(e) => setMaxWickets(Number(e.target.value) || 1)}
+                    className="w-16 sm:w-20 p-1 sm:p-2 border rounded text-sm"
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-medium">Team A players (comma separated)</label>
