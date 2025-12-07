@@ -196,7 +196,17 @@ export default function GamePage() {
 
     // Only join if not already in room (i.e., coming from direct URL, not after creating)
     if (roomId && !location.state?.room) {
-      socketService.emit('joinRoom', { roomId });
+      // ensure socket is connected before emitting to avoid race conditions
+      (async () => {
+        try {
+          await socketService.connectAsync(4000);
+          socketService.emit('joinRoom', { roomId });
+        } catch (e) {
+          console.warn('[GamePage] failed to connect before joinRoom emit', e);
+          toast({ title: 'Connection Error', description: 'Unable to join room (server unreachable).', variant: 'destructive' });
+          navigate('/');
+        }
+      })();
     }
 
     // If we navigated here with a userName (just created or joined), apply it locally
