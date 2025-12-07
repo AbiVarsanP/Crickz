@@ -114,10 +114,10 @@ export default function HomePage() {
 
   return (
     <FuturisticLayout connected={isConnected}>
-      <div className="h-full flex items-center justify-center overflow-hidden">
-        <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center h-full">
-          <div className="space-y-4 h-full flex flex-col justify-center">
-          <Card className="p-3 sm:p-4 rounded-xl shadow-lg neon-hud h-full flex flex-col">
+      <div className="flex items-center justify-center py-10 sm:py-16">
+        <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-start">
+          <div className="space-y-4 flex flex-col justify-center">
+          <Card className="p-3 sm:p-4 rounded-xl shadow-lg neon-hud flex flex-col">
             <CardHeader>
               <CardTitle className="text-2xl font-semibold text-white">Create a Quick Match</CardTitle>
               <CardDescription className="text-sm text-slate-300">Choose overs and wickets, then invite a friend with the room code.</CardDescription>
@@ -145,8 +145,8 @@ export default function HomePage() {
 
         </div>
 
-        <div className="space-y-4 h-full flex flex-col justify-center">
-          <Card className="p-3 sm:p-4 rounded-xl shadow-lg neon-hud h-full flex flex-col">
+        <div className="space-y-4 flex flex-col justify-center">
+          <Card className="p-3 sm:p-4 rounded-xl shadow-lg neon-hud flex flex-col">
             <CardHeader>
               <CardTitle className="text-2xl font-semibold text-white">Join an Existing Match</CardTitle>
               <CardDescription className="text-sm text-slate-300">Enter the room code your friend shared to jump into the match.</CardDescription>
