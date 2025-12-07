@@ -8,14 +8,52 @@ class SocketService {
 
   connect() {
     if (!this.socket) {
-      this.socket = io(SOCKET_URL, {
+      // Before opening a socket, do a quick health probe. If backend is up
+      // we allow socket to auto-connect immediately. If it's not reachable
+      // we create the socket with `autoConnect: false` and poll the health
+      // endpoint, connecting as soon as it becomes available. This avoids
+      // long initial connection timeouts when the backend is cold-starting.
+      const healthProbe = async (timeout = 1000) => {
+        try {
+          const controller = new AbortController();
+          const id = setTimeout(() => controller.abort(), timeout);
+          const res = await fetch(`${SOCKET_URL.replace(/\/$/, '')}/health`, { signal: controller.signal });
+          clearTimeout(id);
+          return res.ok;
+        } catch (e) {
+          return false;
+        }
+      };
+
+      const openSocket = (autoConnect = true) => io(SOCKET_URL, {
         transports: ['websocket', 'polling'],
         reconnection: true,
-        // tolerate slower backend startups with more attempts and longer delays
-        reconnectionAttempts: Infinity,
-        reconnectionDelay: 2000,
-        // exponential backoff factor
-        randomizationFactor: 0.2
+        // start with faster retries to recover quickly
+        reconnectionAttempts: 10,
+        reconnectionDelay: 500,
+        randomizationFactor: 0.2,
+        autoConnect
+      });
+
+      // immediate probe (short). If healthy, create socket normally.
+      healthProbe(800).then((healthy) => {
+        if (healthy) {
+          this.socket = openSocket(true);
+        } else {
+          // backend not yet healthy — create socket but don't auto-connect,
+          // then poll health and connect when ready.
+          this.socket = openSocket(false);
+          const poll = setInterval(async () => {
+            const ok = await healthProbe(1000);
+            if (ok && this.socket) {
+              clearInterval(poll);
+              try { this.socket.connect(); } catch (e) { /* ignore */ }
+            }
+          }, 1500);
+        }
+      }).catch(() => {
+        // fallback: create socket with default autoConnect true
+        this.socket = openSocket(true);
       });
 
       this.socket.on('connect', () => {
