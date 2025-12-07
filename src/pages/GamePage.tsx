@@ -55,28 +55,36 @@ export default function GamePage() {
     }
 
     socket.on('playerJoined', ({ room: updatedRoom, playerNumber: pNum }) => {
-      console.log('[GamePage] playerJoined event received, pNum=', pNum, 'player1.name=', updatedRoom?.player1?.name, 'player2.name=', updatedRoom?.player2?.name, 'room=', updatedRoom);
+      if (!updatedRoom) {
+        console.warn('[GamePage] playerJoined event missing room payload');
+        return;
+      }
+      console.log('[GamePage] playerJoined event received, pNum=', pNum, 'player1.name=', updatedRoom.player1?.name, 'player2.name=', updatedRoom.player2?.name, 'room=', updatedRoom);
       // apply local name if available for immediate display
       if (localName) {
         try {
-          if (pNum === 1) updatedRoom.player1 = { ...updatedRoom.player1, name: localName };
-          else if (pNum === 2) updatedRoom.player2 = { ...updatedRoom.player2, name: localName };
+          if (pNum === 1 && updatedRoom.player1) updatedRoom.player1 = { ...updatedRoom.player1, name: localName };
+          else if (pNum === 2 && updatedRoom.player2) updatedRoom.player2 = { ...updatedRoom.player2, name: localName };
           console.log('[GamePage] applied localName to joined player:', localName);
         } catch (e) { console.error(e); }
       }
       setRoom(updatedRoom);
-      setPlayerNumber(pNum);
+      setPlayerNumber(pNum || 0);
     });
 
     socket.on('roomUpdate', ({ room: updatedRoom }) => {
-      console.log('[GamePage] roomUpdate event received, socket.id=', socket.id, 'player1.name=', updatedRoom?.player1?.name, 'player2.name=', updatedRoom?.player2?.name, 'room=', updatedRoom);
+      if (!updatedRoom) {
+        console.warn('[GamePage] roomUpdate event missing room payload');
+        return;
+      }
+      console.log('[GamePage] roomUpdate event received, socket.id=', socket.id, 'player1.name=', updatedRoom.player1?.name, 'player2.name=', updatedRoom.player2?.name, 'room=', updatedRoom);
       // prefer local name for the current socket player to avoid flashes
       if (localName) {
         try {
-          if (socket.id === updatedRoom.player1.id) {
+          if (updatedRoom.player1 && socket.id === updatedRoom.player1.id) {
             updatedRoom.player1 = { ...updatedRoom.player1, name: localName };
             console.log('[GamePage] applied localName to player1');
-          } else if (socket.id === updatedRoom.player2.id) {
+          } else if (updatedRoom.player2 && socket.id === updatedRoom.player2.id) {
             updatedRoom.player2 = { ...updatedRoom.player2, name: localName };
             console.log('[GamePage] applied localName to player2');
           }
@@ -97,6 +105,7 @@ export default function GamePage() {
     });
 
     socket.on('gameConfigured', ({ room: updatedRoom }) => {
+      if (!updatedRoom) return;
       setRoom(updatedRoom);
     });
 
@@ -113,15 +122,15 @@ export default function GamePage() {
         return { ...prev, tossWinner: winnerId, state: 'batBowlChoice' };
       });
       
-      const isWinner = socket.id === winnerId;
+      const isWinner = socket?.id === winnerId;
       toast({
         title: 'Toss Result',
-        description: `${result.toUpperCase()}! ${isWinner ? 'You won!' : 'Opponent won!'}`,
+        description: `${String(result).toUpperCase()}! ${isWinner ? 'You won!' : 'Opponent won!'}`,
       });
     });
 
     socket.on('inningsStart', ({ innings, targetScore, room: updatedRoom }) => {
-      setRoom(updatedRoom);
+      if (updatedRoom) setRoom(updatedRoom);
       setLastBallResult(null);
       
       if (innings === 2) {
@@ -133,8 +142,9 @@ export default function GamePage() {
     });
 
     socket.on('ballResult', (result: BallResult) => {
+      if (!result) return;
       setLastBallResult(result);
-      setRoom(result.room);
+      if (result.room) setRoom(result.room);
       
       if (result.isOut) {
         toast({

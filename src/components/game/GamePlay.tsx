@@ -23,6 +23,16 @@ export default function GamePlay({ room, playerNumber, roomId, lastBallResult }:
   const isBatting = myPlayer.isBatting;
   console.log('[GamePlay] socket.id=', socket?.id, 'player1.id=', room.player1?.id, 'player2.id=', room.player2?.id, 'player1.name=', room.player1?.name, 'player2.name=', room.player2?.name);
 
+  // defensive: if players are missing (partial payload), avoid throwing
+  if (!room.player1 || !room.player2) {
+    console.warn('[GamePlay] incomplete room payload, waiting for full room data', room);
+    return (
+      <div className="flex-1 flex items-center justify-center p-4">
+        <div className="text-sm text-muted-foreground">Waiting for players...</div>
+      </div>
+    );
+  }
+
   useEffect(() => {
     if (lastBallResult) {
       setShowResult(true);
