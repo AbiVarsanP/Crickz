@@ -1,5 +1,6 @@
 import React from 'react';
-import { Badge } from '@/components/ui/badge';
+// Badge removed; ConnectionStatus component provides status badge
+import ConnectionStatus from '@/components/ConnectionStatus';
 import {
   Dialog,
   DialogTrigger,
@@ -14,10 +15,9 @@ import { Button } from '@/components/ui/button';
 
 type Props = {
   children: React.ReactNode;
-  connected?: boolean;
 };
 
-export default function FuturisticLayout({ children, connected }: Props) {
+export default function FuturisticLayout({ children }: Props) {
   return (
     <div className="h-screen futuristic-bg text-slate-100 overflow-hidden">
       <div className="relative z-10">
@@ -61,9 +61,7 @@ export default function FuturisticLayout({ children, connected }: Props) {
               </Dialog>
 
               <div className="text-sm text-slate-300">Status</div>
-              <Badge variant={connected ? 'default' : 'destructive'} className="text-xs">
-                {connected ? 'ONLINE' : 'OFFLINE'}
-              </Badge>
+              <ConnectionStatus />
             </div>
           </div>
         </header>

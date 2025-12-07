@@ -11,8 +11,11 @@ class SocketService {
       this.socket = io(SOCKET_URL, {
         transports: ['websocket', 'polling'],
         reconnection: true,
-        reconnectionAttempts: 5,
-        reconnectionDelay: 1000
+        // tolerate slower backend startups with more attempts and longer delays
+        reconnectionAttempts: Infinity,
+        reconnectionDelay: 2000,
+        // exponential backoff factor
+        randomizationFactor: 0.2
       });
 
       this.socket.on('connect', () => {
@@ -35,7 +38,7 @@ class SocketService {
     return this.socket;
   }
 
-  async connectAsync(timeout = 5000): Promise<Socket> {
+  async connectAsync(timeout = 10000): Promise<Socket> {
     const s = this.connect();
     if (!s) throw new Error('Failed to create socket');
     if (s.connected) return s;
