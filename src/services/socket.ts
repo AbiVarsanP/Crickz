@@ -35,14 +35,19 @@ class SocketService {
         autoConnect
       });
 
-      // immediate probe (short). If healthy, create socket normally.
+      // Create the socket synchronously with autoConnect=false so we can
+      // attach listeners immediately. We'll then probe the health endpoint
+      // and call `connect()` when ready; this avoids calling `.on` on null
+      // while still preventing immediate connection attempts when backend
+      // is cold.
+      this.socket = openSocket(false);
+
+      // health probe and connect logic
       healthProbe(800).then((healthy) => {
         if (healthy) {
-          this.socket = openSocket(true);
+          try { this.socket?.connect(); } catch (e) { /* ignore */ }
         } else {
-          // backend not yet healthy — create socket but don't auto-connect,
-          // then poll health and connect when ready.
-          this.socket = openSocket(false);
+          // backend not yet healthy — poll and connect when ready.
           const poll = setInterval(async () => {
             const ok = await healthProbe(1000);
             if (ok && this.socket) {
@@ -52,8 +57,8 @@ class SocketService {
           }, 1500);
         }
       }).catch(() => {
-        // fallback: create socket with default autoConnect true
-        this.socket = openSocket(true);
+        // fallback: attempt to connect immediately
+        try { this.socket?.connect(); } catch (e) { /* ignore */ }
       });
 
       this.socket.on('connect', () => {
