@@ -384,10 +384,28 @@ export function setupSocketHandlers(io) {
 
     socket.on('disconnect', () => {
       console.log('User disconnected:', socket.id);
-      const rooms = io.sockets.adapter.rooms;
-      rooms.forEach((_, roomId) => {
-        removePlayerFromRoom(roomId, socket.id);
-      });
+      // Find rooms that contain this socket as a player and remove them
+      const allRooms = getAllRooms ? getAllRooms() : null;
+      if (allRooms) {
+        allRooms.forEach((room) => {
+          if (room.players && room.players.includes(socket.id)) {
+            removePlayerFromRoom(room.roomId, socket.id);
+            // If room still exists after removal, emit updated room state to remaining clients
+            const updated = getRoom(room.roomId);
+            if (updated) {
+              io.to(room.roomId).emit('roomUpdate', { room: updated });
+            } else {
+              // Room removed (no players left) - no update necessary
+            }
+          }
+        });
+      } else {
+        // Fallback: iterate adapter rooms and attempt removal (less precise)
+        const rooms = io.sockets.adapter.rooms;
+        rooms.forEach((_, roomId) => {
+          removePlayerFromRoom(roomId, socket.id);
+        });
+      }
     });
   });
 }
