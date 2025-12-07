@@ -1,9 +1,9 @@
-# Multiplayer Cricket Hand-Game Website Requirements Document
+# Multiplayer Crickz Website Requirements Document
 
 ## 1. Application Overview
 
 ### 1.1 Application Name
-Cricket Hand-Game Arena
+Crickz
 
 ### 1.2 Application Description
 A real-time multiplayer web-based cricket hand-game platform where two players compete in number-matching cricket matches through room-based sessions.

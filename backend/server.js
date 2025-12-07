@@ -10,6 +10,7 @@ const httpServer = createServer(app);
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
+  'http://192.168.1.35:5173',
   'https://your-frontend-domain.netlify.app'
 ];
 
@@ -39,7 +40,7 @@ const io = new Server(httpServer, {
 });
 
 app.get('/', (req, res) => {
-  res.json({ message: 'Cricket Hand-Game Arena Server' });
+  res.json({ message: 'Crickz Server' });
 });
 
 app.get('/health', (req, res) => {

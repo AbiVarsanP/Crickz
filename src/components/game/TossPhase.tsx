@@ -30,7 +30,7 @@ export default function TossPhase({ roomId, playerNumber, room }: TossPhaseProps
           </div>
           <CardTitle className="text-2xl">Toss Time!</CardTitle>
           <CardDescription>
-            {isPlayer1 ? 'Choose Heads or Tails' : 'Waiting for Player 1 to choose...'}
+            {isPlayer1 ? 'Choose Heads or Tails' : `Waiting for ${room.player1?.name || 'Player 1'} to choose...`}
           </CardDescription>
         </CardHeader>
         <CardContent>

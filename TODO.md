@@ -1,4 +1,4 @@
-# Task: Build Multiplayer Cricket Hand-Game Website
+# Task: Build Multiplayer Crickz Website
 
 ## Plan
 - [x] 1. Setup Design System (Cricket-themed colors)

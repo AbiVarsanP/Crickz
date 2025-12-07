@@ -21,6 +21,7 @@ export default function GamePlay({ room, playerNumber, roomId, lastBallResult }:
   const myPlayer = playerNumber === 1 ? room.player1 : room.player2;
   const opponentPlayer = playerNumber === 1 ? room.player2 : room.player1;
   const isBatting = myPlayer.isBatting;
+  console.log('[GamePlay] socket.id=', socket?.id, 'player1.id=', room.player1?.id, 'player2.id=', room.player2?.id, 'player1.name=', room.player1?.name, 'player2.name=', room.player2?.name);
 
   useEffect(() => {
     if (lastBallResult) {
@@ -39,17 +40,28 @@ export default function GamePlay({ room, playerNumber, roomId, lastBallResult }:
     socketService.emit('playBall', { roomId, number });
   };
 
-  const getOvers = (balls: number) => {
-    const overs = Math.floor(balls / 6);
-    const remainingBalls = balls % 6;
+  const getOvers = (balls: number, ballsPerOver: number) => {
+    const overs = Math.floor(balls / ballsPerOver);
+    const remainingBalls = balls % ballsPerOver;
     return `${overs}.${remainingBalls}`;
   };
 
+  // Support both solo and team modes
+  const battingEntity = room.gameMode === 'team'
+    ? (room.teamA.isBatting ? room.teamA : room.teamB)
+    : (room.player1.isBatting ? room.player1 : room.player2);
+
+  const bowlingEntity = room.gameMode === 'team'
+    ? (room.teamA.isBatting ? room.teamB : room.teamA)
+    : (room.player1.isBatting ? room.player2 : room.player1);
+
+  // For clarity in solo mode, expose battingPlayer/bowlingPlayer variables referencing player objects
   const battingPlayer = room.player1.isBatting ? room.player1 : room.player2;
   const bowlingPlayer = room.player1.isBatting ? room.player2 : room.player1;
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="flex flex-col space-y-4 animate-fade-in min-h-0">
+      {/* Player names removed — streamlined UI */}
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
@@ -77,26 +89,30 @@ export default function GamePlay({ room, playerNumber, roomId, lastBallResult }:
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
               <Target className="h-5 w-5" />
-              Batting: {battingPlayer.name}
+              {room.gameMode === 'team' ? (
+                <>Batting: {room.teamA.isBatting ? 'Team A' : 'Team B'}</>
+              ) : (
+                <>Batting: {(battingPlayer as any).name || (battingEntity as any).name || 'Player'}</>
+              )}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
-              <div className="flex justify-between text-2xl font-bold">
-                <span>Score:</span>
-                <span className="text-primary">{battingPlayer.score}/{battingPlayer.wickets}</span>
-              </div>
+                  <div className="flex justify-between text-xl font-semibold">
+                    <span>Score:</span>
+                    <span className="text-primary">{room.gameMode === 'team' ? (battingEntity as any).totalScore : (battingEntity as any).score}/{(battingEntity as any).wickets}</span>
+                  </div>
               <div className="flex justify-between text-sm text-muted-foreground">
                 <span>Overs:</span>
-                <span>{getOvers(battingPlayer.balls)}</span>
+                <span>{getOvers((battingEntity as any).balls, room.ballsPerOver || 6)}</span>
               </div>
               <div className="flex justify-between text-sm text-muted-foreground">
                 <span>Balls:</span>
-                <span>{battingPlayer.balls}/18</span>
+                <span>{(battingEntity as any).balls}/{room.totalOvers * (room.ballsPerOver || 6)}</span>
               </div>
               <div className="flex justify-between text-sm text-muted-foreground">
                 <span>Wickets Left:</span>
-                <span>{5 - battingPlayer.wickets}</span>
+                <span>{room.maxWickets - (battingEntity as any).wickets}</span>
               </div>
             </div>
           </CardContent>
@@ -106,18 +122,22 @@ export default function GamePlay({ room, playerNumber, roomId, lastBallResult }:
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
               <Shield className="h-5 w-5" />
-              Bowling: {bowlingPlayer.name}
+              {room.gameMode === 'team' ? (
+                <>Bowling: {room.teamA.isBatting ? 'Team B' : 'Team A'}</>
+              ) : (
+                <>Bowling: {(bowlingPlayer as any).name || (bowlingEntity as any).name || 'Player'}</>
+              )}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
-              <div className="flex justify-between text-lg">
+              <div className="flex justify-between text-base">
                 <span>Wickets Taken:</span>
-                <span className="font-bold text-secondary">{battingPlayer.wickets}</span>
+                <span className="font-semibold text-secondary">{(battingEntity as any).wickets}</span>
               </div>
               <div className="flex justify-between text-sm text-muted-foreground">
                 <span>Runs Conceded:</span>
-                <span>{battingPlayer.score}</span>
+                <span>{room.gameMode === 'team' ? (battingEntity as any).totalScore : (battingEntity as any).score}</span>
               </div>
             </div>
           </CardContent>
@@ -146,21 +166,23 @@ export default function GamePlay({ room, playerNumber, roomId, lastBallResult }:
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-3 xl:grid-cols-6 gap-4">
-            {[1, 2, 3, 4, 5, 6].map((num) => (
-              <Button
-                key={num}
-                onClick={() => handleNumberSelect(num)}
-                disabled={selectedNumber !== null}
-                size="lg"
-                className={`h-20 text-2xl font-bold ${
-                  selectedNumber === num ? 'animate-pulse-glow' : ''
-                }`}
-                variant={selectedNumber === num ? 'default' : 'outline'}
-              >
-                {num}
-              </Button>
-            ))}
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4">
+            {[1, 2, 3, 4, 5, 6].map((num) => {
+              const isSelected = selectedNumber === num;
+              const base = 'h-12 sm:h-16 md:h-20 text-xl sm:text-2xl font-bold rounded-lg flex items-center justify-center border';
+              const selectedClasses = 'bg-white/30 text-black border-white/40';
+              const unselectedClasses = 'bg-white/8 text-white border-white/20 hover:bg-white/12';
+              return (
+                <Button
+                  key={num}
+                  onClick={() => handleNumberSelect(num)}
+                  disabled={selectedNumber !== null}
+                  className={`${base} ${isSelected ? selectedClasses : unselectedClasses} ${isSelected ? 'animate-pulse-glow' : ''}`}
+                >
+                  {num}
+                </Button>
+              );
+            })}
           </div>
           {selectedNumber !== null && (
             <p className="text-center mt-4 text-sm text-muted-foreground animate-pulse">

@@ -4,16 +4,21 @@ function generateRoomCode() {
   return Math.random().toString(36).substring(2, 8).toUpperCase();
 }
 
-export function createRoom() {
+export function createRoom(totalOvers = 5, maxWickets = 5) {
   const roomId = generateRoomCode();
   const room = {
     roomId,
     players: [],
-    state: 'waiting',
+    state: 'waiting', // waiting -> setup -> toss -> batBowlChoice -> innings1 -> innings2 -> complete
+    gameMode: 'solo', // solo or team
+    totalOvers: totalOvers,
+    ballsPerOver: 6,
     tossWinner: null,
     tossChoice: null,
     batBowlChoice: null,
     currentInnings: 1,
+    
+    // Solo mode fields
     player1: {
       id: null,
       name: 'Player 1',
@@ -30,11 +35,31 @@ export function createRoom() {
       balls: 0,
       isBatting: false
     },
+    
+    // Team mode fields
+    teamA: {
+      players: [], // [{name, runs, balls, isOut}]
+      totalScore: 0,
+      wickets: 0,
+      balls: 0,
+      currentBatsmanIndex: 0,
+      isBatting: false
+    },
+    teamB: {
+      players: [], // [{name, runs, balls, isOut}]
+      totalScore: 0,
+      wickets: 0,
+      balls: 0,
+      currentBatsmanIndex: 0,
+      isBatting: false
+    },
+    
     currentBall: {
       batNumber: null,
       bowlNumber: null
     },
-    targetScore: null
+    targetScore: null,
+    maxWickets: maxWickets // Updated based on game mode or creator choice
   };
   rooms.set(roomId, room);
   return room;
@@ -47,17 +72,26 @@ export function getRoom(roomId) {
 export function joinRoom(roomId, playerId) {
   const room = rooms.get(roomId);
   if (!room) {
+    console.log(`Join failed: Room ${roomId} not found`);
     return { success: false, error: 'Room not found' };
   }
-  if (room.players.length >= 2) {
-    return { success: false, error: 'Room is full' };
-  }
+  
+  // Check if player is already in the room first
   if (room.players.includes(playerId)) {
+    console.log(`Player ${playerId} already in room ${roomId}`);
     return { success: true, room, playerNumber: room.players.indexOf(playerId) + 1 };
+  }
+  
+  // Then check if room is full
+  if (room.players.length >= 2) {
+    console.log(`Join failed: Room ${roomId} is full. Players:`, room.players);
+    return { success: false, error: 'Room is full' };
   }
   
   room.players.push(playerId);
   const playerNumber = room.players.length;
+  
+  console.log(`Player ${playerId} joined room ${roomId} as player ${playerNumber}`);
   
   if (playerNumber === 1) {
     room.player1.id = playerId;
@@ -96,4 +130,37 @@ export function removePlayerFromRoom(roomId, playerId) {
 
 export function getAllRooms() {
   return Array.from(rooms.values());
+}
+
+export function setupGameSettings(roomId, settings) {
+  const room = rooms.get(roomId);
+  if (!room) return null;
+  
+  const { gameMode, totalOvers, teamAPlayers, teamBPlayers } = settings;
+  
+  room.gameMode = gameMode;
+  room.totalOvers = totalOvers;
+  room.ballsPerOver = 6;
+  
+  if (gameMode === 'team' && teamAPlayers && teamBPlayers) {
+    room.teamA.players = teamAPlayers.map(name => ({
+      name,
+      runs: 0,
+      balls: 0,
+      isOut: false
+    }));
+    room.teamB.players = teamBPlayers.map(name => ({
+      name,
+      runs: 0,
+      balls: 0,
+      isOut: false
+    }));
+    room.maxWickets = teamAPlayers.length - 1;
+  } else {
+    room.maxWickets = 5; // Solo mode default
+  }
+  
+  room.state = 'toss';
+  
+  return room;
 }

@@ -1,7 +1,7 @@
 {
   "name": "cricket-game-backend",
   "version": "1.0.0",
-  "description": "Backend server for Cricket Hand-Game Arena",
+  "description": "Backend server for Crickz",
   "main": "server.js",
   "type": "module",
   "scripts": {

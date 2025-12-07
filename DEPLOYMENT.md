@@ -1,6 +1,6 @@
-# Deployment Guide - Cricket Hand-Game Arena
+# Deployment Guide - Crickz
 
-This guide will help you deploy the Cricket Hand-Game Arena to production.
+This guide will help you deploy Crickz to production.
 
 ## Architecture
 

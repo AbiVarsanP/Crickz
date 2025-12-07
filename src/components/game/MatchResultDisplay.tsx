@@ -42,7 +42,7 @@ export default function MatchResultDisplay({ result, playerNumber, onPlayAgain }
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                   <Target className="h-5 w-5" />
-                  Player 1 {playerNumber === 1 && '(You)'}
+                  {(result.player1 as any)?.name || 'Player 1'} {playerNumber === 1 && '(You)'}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
@@ -65,7 +65,7 @@ export default function MatchResultDisplay({ result, playerNumber, onPlayAgain }
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                   <Target className="h-5 w-5" />
-                  Player 2 {playerNumber === 2 && '(You)'}
+                  {(result.player2 as any)?.name || 'Player 2'} {playerNumber === 2 && '(You)'}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">

@@ -1,4 +1,4 @@
-# 🔧 Troubleshooting Guide - Cricket Hand-Game Arena
+# 🔧 Troubleshooting Guide - Crickz
 
 ## Common Issues and Solutions
 
@@ -30,7 +30,7 @@ http://localhost:3001
 
 You should see:
 ```json
-{"status":"ok","message":"Cricket Hand-Game Server"}
+{"status":"ok","message":"Crickz Server"}
 ```
 
 **Step 3: Check Connection Status**

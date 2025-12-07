@@ -1,5 +1,6 @@
 import HomePage from './pages/HomePage';
 import GamePage from './pages/GamePage';
+// TeamSetup route removed (team UI disabled)
 import type { ReactNode } from 'react';
 
 interface RouteConfig {
@@ -20,6 +21,7 @@ const routes: RouteConfig[] = [
     path: '/game/:roomId',
     element: <GamePage />
   }
+  // Team setup route removed
 ];
 
 export default routes;

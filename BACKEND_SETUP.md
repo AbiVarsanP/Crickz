@@ -2,7 +2,7 @@
 
 ## ⚠️ IMPORTANT: Backend Must Be Running
 
-The Cricket Hand-Game Arena requires a backend server to handle real-time multiplayer functionality. **You must start the backend server before using the application.**
+Crickz requires a backend server to handle real-time multiplayer functionality. **You must start the backend server before using the application.**
 
 ## Quick Start
 
@@ -45,7 +45,7 @@ http://localhost:3001
 
 You should see:
 ```json
-{"status":"ok","message":"Cricket Hand-Game Server"}
+{"status":"ok","message":"Crickz Server"}
 ```
 
 ### Check Health Endpoint
@@ -117,7 +117,7 @@ curl http://localhost:3001
 
 Expected output:
 ```json
-{"status":"ok","message":"Cricket Hand-Game Server"}
+{"status":"ok","message":"Crickz Server"}
 ```
 
 ### Test 2: Health Check

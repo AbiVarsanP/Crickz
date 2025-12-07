@@ -1,10 +1,10 @@
-# 🏏 Cricket Hand-Game Arena - User Guide
+# 🏏 Crickz - User Guide
 
-Welcome to Cricket Hand-Game Arena! This guide will help you understand and enjoy the game.
+Welcome to Crickz! This guide will help you understand and enjoy the game.
 
-## 🎮 What is Cricket Hand-Game?
+## 🎮 What is Crickz?
 
-Cricket Hand-Game is a digital version of the classic hand cricket game. Two players compete by selecting numbers (1-6) simultaneously:
+Crickz is a digital version of the classic hand cricket game. Two players compete by selecting numbers (1-6) simultaneously:
 - **If numbers match** → Batsman is OUT! 🔴
 - **If numbers differ** → Batsman scores runs equal to their number ✅
 
@@ -203,7 +203,7 @@ Result: You score 1 run
 
 ## 🎊 Enjoy the Game!
 
-Cricket Hand-Game Arena brings the classic hand cricket experience to the digital world. Challenge your friends, develop strategies, and most importantly - have fun! 🏏
+Crickz brings the classic hand cricket experience to the digital world. Challenge your friends, develop strategies, and most importantly - have fun! 🏏
 
 **Good luck and may the best player win!** 🏆
 

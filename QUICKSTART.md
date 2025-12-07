@@ -1,4 +1,4 @@
-# 🚀 Quick Start Guide - Cricket Hand-Game Arena
+# 🚀 Quick Start Guide - Crickz
 
 Get up and running in 5 minutes!
 
@@ -116,4 +116,4 @@ See [DEPLOYMENT.md](./DEPLOYMENT.md) for complete deployment guide.
 
 ## 🎉 You're Ready!
 
-Start playing Cricket Hand-Game Arena and challenge your friends! 🏏
+Start playing Crickz and challenge your friends! 🏏

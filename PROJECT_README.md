@@ -1,10 +1,10 @@
-# 🏏 Cricket Hand-Game Arena
+# 🏏 Crickz
 
 A real-time multiplayer web-based cricket hand-game platform where two players compete in number-matching cricket matches through room-based sessions.
 
 ## 🎮 Game Overview
 
-Cricket Hand-Game Arena is a digital version of the classic hand cricket game. Two players compete by selecting numbers (1-6) simultaneously. If the numbers match, the batsman is OUT. Otherwise, the batsman scores runs equal to their selected number.
+Crickz is a digital version of the classic hand cricket game. Two players compete by selecting numbers (1-6) simultaneously. If the numbers match, the batsman is OUT. Otherwise, the batsman scores runs equal to their selected number.
 
 ### Game Rules
 
@@ -22,7 +22,7 @@ Cricket Hand-Game Arena is a digital version of the classic hand cricket game. T
 - 📊 **Live Scoreboard**: Real-time score updates and statistics
 - 🎯 **Innings Tracking**: Complete tracking of runs, wickets, balls, and overs
 - 🏆 **Match Results**: Detailed scorecard at the end of each match
-- 🎨 **Cricket-themed Design**: Beautiful UI with cricket green, pitch brown, and ball red colors
+- 🎨 **Crickz Design**: Futuristic neon UI with high-contrast translucent cards and animated backgrounds
 - ⚡ **Smooth Animations**: Engaging animations for wickets, runs, and transitions
 - 📱 **Responsive Design**: Works seamlessly on desktop and mobile devices
 
@@ -45,7 +45,7 @@ Cricket Hand-Game Arena is a digital version of the classic hand cricket game. T
 ## 📁 Project Structure
 
 ```
-cricket-hand-game-arena/
+crickz/
 ├── src/                          # Frontend source code
 │   ├── components/
 │   │   ├── game/                # Game-specific components
@@ -90,7 +90,7 @@ cricket-hand-game-arena/
 
 ```bash
 git clone <repository-url>
-cd cricket-hand-game-arena
+cd crickz
 ```
 
 #### 2. Setup Backend
@@ -254,4 +254,4 @@ This project is licensed under the MIT License.
 
 ---
 
-**Enjoy playing Cricket Hand-Game Arena! 🏏**
+**Enjoy playing Crickz! 🏏**

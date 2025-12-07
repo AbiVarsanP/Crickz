@@ -6,19 +6,20 @@ import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold transition-transform duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--ring)/0.35)] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+          "bg-[hsl(var(--primary)/0.95)] text-primary-foreground shadow-[0_8px_30px_-8px_hsl(var(--primary)/0.45)] hover:shadow-[0_0_40px_hsl(var(--primary)/0.45)] hover:-translate-y-0.5",
         destructive:
-          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+          "bg-[hsl(var(--destructive)/0.95)] text-destructive-foreground shadow-sm hover:brightness-95",
         outline:
-          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+          "bg-transparent border border-white/6 text-primary-foreground hover:bg-[hsl(var(--primary)/0.06)]",
         secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+          "bg-[hsl(var(--secondary)/0.9)] text-secondary-foreground shadow-sm hover:brightness-105",
+        ghost: "bg-transparent hover:bg-[hsl(var(--accent)/0.06)] hover:text-accent-foreground",
+        link: "text-[hsl(var(--primary)/0.95)] underline-offset-4 hover:underline",
       },
       size: {
         default: "h-9 px-4 py-2",

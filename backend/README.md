@@ -1,4 +1,8 @@
-# Cricket Hand-Game Arena - Backend Server
+# Welcome to Your Miaoda Project
+Miaoda Application Link URL
+    URL:https://medo.dev/projects/app-81mdtfyidaf5
+
+# Crickz - Backend Server
 
 ## 🚀 Quick Start
 
@@ -18,7 +22,7 @@ Open browser: http://localhost:3001
 
 You should see:
 ```json
-{"status":"ok","message":"Cricket Hand-Game Server"}
+{"status":"ok","message":"Crickz Server"}
 ```
 
 ## 📋 What This Does

@@ -1,4 +1,4 @@
-# 📁 Files Created - Cricket Hand-Game Arena
+# 📁 Files Created - Crickz
 
 ## Frontend Files (src/)
 

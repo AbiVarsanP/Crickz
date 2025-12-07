@@ -10,73 +10,75 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --radius: 0.5rem;
-    --background: 45 30% 96%;
-    --foreground: 0 0% 20%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 20%;
+    /* Futuristic neon palette */
+    --background: 240 20% 6%; /* deep navy */
+    --foreground: 210 50% 95%;
+    --card: 220 20% 12%;
+    --card-foreground: 210 50% 95%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 20%;
-    --primary: 100 45% 25%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 30 25% 50%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 45 20% 90%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 0 75% 50%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 75% 50%;
-    --destructive-foreground: 0 0% 98%;
+    --primary: 280 80% 60%; /* neon purple */
+    --primary-foreground: 230 30% 8%;
+    --secondary: 180 90% 45%; /* neon cyan */
+    --secondary-foreground: 230 30% 8%;
+    --muted: 230 10% 10%;
+    --muted-foreground: 210 20% 70%;
+    --accent: 340 90% 60%; /* neon pink */
+    --accent-foreground: 230 30% 8%;
+    --destructive: 10 90% 60%;
+    --destructive-foreground: 230 30% 8%;
     --border: 45 20% 85%;
     --input: 45 20% 85%;
-    --ring: 100 45% 25%;
-    --chart-1: 100 45% 35%;
-    --chart-2: 30 25% 50%;
-    --chart-3: 0 75% 50%;
-    --chart-4: 45 30% 70%;
-    --chart-5: 100 30% 60%;
-    --sidebar-background: 45 30% 96%;
-    --sidebar-foreground: 0 0% 20%;
-    --sidebar-primary: 100 45% 25%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 45 20% 90%;
-    --sidebar-accent-foreground: 0 0% 20%;
-    --sidebar-border: 45 20% 85%;
-    --sidebar-ring: 100 45% 25%;
+    --ring: 280 80% 60%;
+    --chart-1: 280 80% 60%;
+    --chart-2: 180 90% 45%;
+    --chart-3: 340 90% 60%;
+    --chart-4: 220 20% 20%;
+    --chart-5: 260 80% 55%;
+    --sidebar-background: 240 18% 8%;
+    --sidebar-foreground: 210 50% 95%;
+    --sidebar-primary: 280 80% 60%;
+    --sidebar-primary-foreground: 230 30% 8%;
+    --sidebar-accent: 180 90% 45%;
+    --sidebar-accent-foreground: 230 30% 8%;
+    --sidebar-border: 240 18% 12%;
+    --sidebar-ring: 280 80% 60%;
   }
 
   .dark {
-    --background: 0 0% 10%;
-    --foreground: 0 0% 95%;
-    --card: 0 0% 15%;
-    --card-foreground: 0 0% 95%;
-    --popover: 0 0% 15%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 100 45% 35%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 30 25% 40%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 0 75% 55%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 75% 55%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 25%;
-    --input: 0 0% 25%;
-    --ring: 100 45% 35%;
-    --chart-1: 100 45% 45%;
-    --chart-2: 30 25% 50%;
-    --chart-3: 0 75% 60%;
-    --chart-4: 45 30% 50%;
-    --chart-5: 100 30% 55%;
-    --sidebar-background: 0 0% 10%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 100 45% 35%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 0 0% 20%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 0 0% 25%;
-    --sidebar-ring: 100 45% 35%;
+    --background: 240 18% 6%;
+    --foreground: 210 50% 95%;
+    /* make cards lighter than background for stronger contrast */
+    --card: 230 22% 16%;
+    --card-foreground: 210 50% 98%;
+    --popover: 220 14% 10%;
+    --popover-foreground: 210 50% 95%;
+    --primary: 280 80% 65%;
+    --primary-foreground: 230 30% 8%;
+    --secondary: 180 90% 48%;
+    --secondary-foreground: 230 30% 8%;
+    --muted: 240 10% 8%;
+    --muted-foreground: 210 20% 70%;
+    --accent: 340 90% 65%;
+    --accent-foreground: 230 30% 8%;
+    --destructive: 10 90% 65%;
+    --destructive-foreground: 230 30% 8%;
+    --border: 240 18% 12%;
+    --input: 240 18% 12%;
+    --ring: 280 80% 65%;
+    --chart-1: 280 80% 65%;
+    --chart-2: 180 90% 48%;
+    --chart-3: 340 90% 65%;
+    --chart-4: 220 20% 18%;
+    --chart-5: 260 80% 60%;
+    --sidebar-background: 240 18% 6%;
+    --sidebar-foreground: 210 50% 95%;
+    --sidebar-primary: 280 80% 65%;
+    --sidebar-primary-foreground: 230 30% 8%;
+    --sidebar-accent: 180 90% 48%;
+    --sidebar-accent-foreground: 230 30% 8%;
+    --sidebar-border: 240 18% 12%;
+    --sidebar-ring: 280 80% 65%;
   }
 }
 
@@ -87,6 +89,16 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    margin: 0;
+    height: 100%;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Ensure app root elements can use h-full */
+  html, #root {
+    height: 100%;
   }
 }
 
@@ -151,5 +163,24 @@ All colors MUST be HSL.
 
   .animate-pulse-glow {
     animation: pulse-glow 1s ease-in-out infinite;
+  }
+
+  /* Futuristic animated background */
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .futuristic-bg {
+    background: linear-gradient(90deg, rgba(58,12,120,0.18) 0%, rgba(14,162,163,0.12) 35%, rgba(255,45,85,0.08) 75%);
+    background-size: 300% 300%;
+    animation: gradientShift 12s ease infinite;
+  }
+
+  .neon-hud {
+    box-shadow: 0 0 40px hsl(var(--primary) / 0.12), inset 0 -1px 0 rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.04);
+    backdrop-filter: blur(6px);
   }
 }

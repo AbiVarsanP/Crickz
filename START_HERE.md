@@ -1,6 +1,6 @@
-# 🏏 Cricket Hand-Game Arena - START HERE
+# 🏏 Crickz - START HERE
 
-Welcome to Cricket Hand-Game Arena! This is your starting point.
+Welcome to Crickz! This is your starting point.
 
 ## 🎯 What is This?
 
@@ -75,7 +75,7 @@ Frontend runs on `http://localhost:5173`
 ## 📁 Project Structure
 
 ```
-cricket-hand-game-arena/
+crickz/
 ├── src/                    # Frontend (React + TypeScript)
 │   ├── pages/             # HomePage, GamePage
 │   ├── components/game/   # Game components
